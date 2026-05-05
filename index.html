@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EzAdmissions | College Consulting</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --dark:      #1a1a2e;
+      --mid:       #2e2e4a;
+      --accent:    #7399C6;
+      --accent-lt: #a8c0dd;
+      --bg:        #fafafa;
+      --bg2:       #f0f2f5;
+      --border:    #dde2ea;
+      --gray:      #6b7280;
+      --white:     #ffffff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: var(--dark);
+      background: var(--bg);
+      line-height: 1.8;
+      font-size: 1.15rem;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: var(--dark);
+      z-index: 100;
+      padding: 0 2rem;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--mid);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+    }
+
+    .nav-brand img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      filter: brightness(0) invert(1);
+    }
+
+    .nav-logo {
+      font-family: Arial, sans-serif;
+      color: var(--white);
+      font-size: 1.35rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: rgba(255,255,255,1); }
+
+    /* HERO */
+    .hero {
+      min-height: 75vh;
+      background: var(--dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 7rem 2rem 5rem;
+      position: relative;
+    }
+
+    .hero-inner { max-width: 700px; position: relative; z-index: 5; }
+
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--accent-lt);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.5rem, 6vw, 3.5rem);
+      color: var(--white);
+      line-height: 1.1;
+      margin-bottom: 2rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
+
+    .from-student {
+      color: var(--white);
+      font-size: 1.15rem;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+      opacity: 0.85;
+    }
+
+    .schools-row {
+      display: flex;
+      align-items: stretch;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-bottom: 0;
+      flex-wrap: wrap;
+    }
+
+    .school-badge {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 500;
+      min-height: 60px;
+    }
+    .school-badge img { width: 36px; height: 36px; object-fit: contain; flex-shrink: 0; }
+
+    .badge-berkeley { background: #003262; color: #FDB515; }
+    .badge-cornell  { background: #B31B1B; color: #fff; }
+    .badge-michigan { background: #00274C; color: #FFCB05; }
+    .badge-columbia { background: #004990; color: #B9D9EB; }
+
+    /* SECTIONS */
+    section { padding: 4rem 2rem; }
+    .container { max-width: 850px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--gray);
+      margin-bottom: 0.7rem;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    hr.rule { border: none; border-top: 1px solid var(--border); margin: 0; }
+
+    /* SERVICES */
+    #services { background: var(--bg2); }
+
+    .services-list {
+      margin-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .service-category {
+      margin-bottom: 2rem;
+    }
+
+    .category-header {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin: 2rem 0 1rem 0;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--accent);
+    }
+
+    .service-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 2rem;
+      padding: 1.4rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .service-row-left { flex: 1; }
+
+    .service-name {
+      font-size: 1.35rem;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+    }
+
+    .service-desc {
+      font-size: 1.1rem;
+      color: var(--gray);
+      line-height: 1.7;
+    }
+
+    .service-includes {
+      margin-top: 0.7rem;
+      padding-left: 1.2rem;
+      font-size: 1rem;
+      color: var(--mid);
+      line-height: 1.7;
+    }
+
+    .service-includes li {
+      margin-bottom: 0.2rem;
+    }
+
+    .service-price {
+      font-size: 1.35rem;
+      color: var(--dark);
+      white-space: nowrap;
+      flex-shrink: 0;
+      font-weight: 600;
+    }
+
+    .service-price small {
+      font-size: 0.85rem;
+      color: var(--gray);
+      font-weight: 400;
+    }
+
+    /* Collapsible Example */
+    .example-toggle {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1rem;
+      margin-top: 1rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .example-toggle:hover {
+      background: var(--bg2);
+    }
+
+    .example-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+    }
+
+    .example-arrow {
+      transition: transform 0.3s;
+      font-size: 1.2rem;
+      color: var(--gray);
+    }
+
+    .example-toggle.active .example-arrow {
+      transform: rotate(180deg);
+    }
+
+    .example-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease-out;
+    }
+
+    .example-toggle.active .example-content {
+      max-height: 2000px;
+      transition: max-height 0.5s ease-in;
+    }
+
+    .example-inner {
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+      margin-top: 1rem;
+    }
+
+    .example-section {
+      margin-bottom: 1.5rem;
+    }
+
+    .example-section h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--white);
+      background: var(--dark);
+      padding: 0.6rem;
+      margin-bottom: 0;
+    }
+
+    .example-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .example-table td {
+      border: 1px solid var(--border);
+      padding: 0.6rem;
+      vertical-align: top;
+    }
+
+    .example-table td:first-child {
+      font-weight: 600;
+      background: var(--bg2);
+      width: 30%;
+    }
+
+    .example-table td:last-child {
+      color: var(--mid);
+      line-height: 1.5;
+    }
+
+    .example-note {
+      font-size: 0.8rem;
+      color: var(--gray);
+      font-style: italic;
+      margin-top: 1rem;
+      padding: 0.8rem;
+      background: var(--bg2);
+      border-radius: 4px;
+    }
+
+    .payment-note {
+      margin-top: 1.2rem;
+      font-size: 0.85rem;
+      color: var(--gray);
+    }
+
+    /* CONTACT */
+    #contact { background: var(--dark); color: white; }
+
+    .contact-inner { max-width: 600px; }
+
+    #contact .section-label { color: var(--accent-lt); }
+    #contact .section-title { color: white; }
+
+    .contact-detail {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.6);
+      margin-bottom: 0.6rem;
+      line-height: 1.6;
+    }
+
+    .contact-detail strong { color: var(--white); font-weight: 500; }
+    .contact-detail a { color: var(--white); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      border-radius: 3px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.2s;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-primary:hover {
+      background: var(--accent-lt);
+      transform: translateY(-1px);
+    }
+
+    /* BIO SECTION */
+    .bio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .bio-card {
+      text-align: center;
+    }
+
+    .bio-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto 1.5rem;
+      display: block;
+      border: 3px solid var(--border);
+    }
+
+    .bio-name {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.3rem;
+    }
+
+    .bio-location {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .bio-school {
+      font-size: 1rem;
+      color: var(--dark);
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .bio-major {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-bottom: 1.2rem;
+    }
+
+    .bio-text {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--dark);
+      text-align: left;
+      margin-top: 1rem;
+    }
+
+    .bio-text p + p {
+      margin-top: 0.9rem;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #0a0a0a;
+      padding: 2rem;
+      text-align: center;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+    }
+    footer a { color: rgba(255,255,255,0.6); text-decoration: none; }
+
+    /* CONTACT FORM */
+    .contact-form {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      max-width: 500px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.85);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: Arial, sans-serif;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 4px;
+      background: rgba(255,255,255,0.08);
+      color: var(--white);
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.35);
+    }
+
+    .form-group select option {
+      background: #222;
+      color: var(--white);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+    }
+
+    .form-success {
+      display: none;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.95rem;
+      margin-top: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .service-row { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-brand">
+    <svg width="40" height="40" viewBox="0 0 400 400" role="img" xmlns="http://www.w3.org/2000/svg">
+      <image href="ez-logo.png" width="400" height="400"/>
+    </svg>
+    <span class="nav-logo">EzAdmissions</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <h1>Get into your dream college.</h1>
+
+    <p class="from-student">Consulting from students admitted to:</p>
+    <div class="schools-row">
+      <div class="school-badge badge-berkeley">
+        <img src="berkeley.png" alt="Berkeley">
+        UC Berkeley
+      </div>
+      <div class="school-badge badge-cornell">
+        <img src="cornell.png" alt="Cornell">
+        Cornell
+      </div>
+      <div class="school-badge badge-michigan">
+        <img src="michigan.png" alt="Michigan">
+        Michigan
+      </div>
+      <div class="school-badge badge-columbia">
+        <img src="columbia.png" alt="Columbia">
+        Columbia
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- BIO SECTION -->
+<section id="about">
+  <div class="container">
+    <h2 class="section-title">Meet Your Consultants</h2>
+    <div class="bio-grid">
+
+      <div class="bio-card">
+        <img src="alex-zhu.jpg" alt="Alex Zhu" class="bio-photo">
+        <div class="bio-name">Alex Zhu</div>
+        <div class="bio-location">Oakland, CA</div>
+        <div class="bio-school">Columbia 2030</div>
+        <div class="bio-major">Computer Science</div>
+        <div class="bio-text">
+          <p>I'm an incoming student at Columbia University planning to study computer science and applied math. In high school, I focused on building a strong profile in STEM through real projects, research, and competitions.</p>
+          <p>I qualified for the International Science and Engineering Fair (ISEF) and competed in GENIUS Olympiad, the Conrad Challenge, and the Diamond Challenge. I also worked on AI and engineering projects, including building a wearable device that translates sign language to speech.</p>
+          <p>I scored a 36 on the ACT and took rigorous courses while managing long-term projects and leadership roles.</p>
+          <p>Going through the college process at a competitive Bay Area private school taught me what actually matters and what doesn't. I help students build a clear plan, choose the right activities, and avoid wasting time on things that don't help their application.</p>
+        </div>
+      </div>
+
+      <div class="bio-card">
+        <img src="wallace-arney.jpg" alt="Wallace Arney" class="bio-photo" style="object-position: center 15%;">
+        <div class="bio-name">Wallace Arney</div>
+        <div class="bio-location">Piedmont, CA</div>
+        <div class="bio-school">Cornell 2030</div>
+        <div class="bio-major">Economics</div>
+        <div class="bio-text">
+          <p>I'm an incoming student at Cornell University planning to study economics. In high school, I focused on building a strong profile in humanities through policy debate competitions and mentorship, along with a side business.</p>
+          <p>I qualified for the Tournament of Champions (TOC) twice, ranked 11th in the national coaches poll, and received an exclusive $7,000 scholarship (awarded to 12 out of ~3,000) to the Michigan Policy Debate Camp.</p>
+          <p>I scored a 1550 (800 math, 750 R&amp;W) on the SAT and had to balance rigorous prep with coursework all throughout high school.</p>
+          <p>The college process taught me that a successful admission strategy relies on discrete, replicable steps that any high schooler can take. Nobody's incapable. I want to help students navigate their extracurriculars, get rid of the fluff, and strategize over their application.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem;">
+      <img src="ez-logo.png" width="36" height="36" style="border-radius:4px;" alt="Ez Logo">
+      <h2 class="section-title" style="margin-bottom:0;">Services</h2>
+    </div>
+    <div class="services-list">
+
+      <!-- Entry Course -->
+      <div class="service-category">
+        <h3 class="category-header">Entry Course</h3>
+
+        <div class="service-row">
+          <div class="service-row-left">
+            <div class="service-name">College Admissions Crash Course</div>
+            <div class="service-desc">A complete overview of the college admissions process: everything you need to know before you start applying. Designed for students and families just getting started.</div>
+            <ul class="service-includes">
+              <li>How the admissions process actually works, start to finish</li>
+              <li>How to write strong essays: personal statement, supplementals, and UC PIQs</li>
+              <li>Walkthrough of the Common App and the UC application</li>
+              <li>How to use Scoir and other planning tools effectively</li>
+              <li>Building a balanced college list and managing deadlines</li>
+            </ul>
+          </div>
+          <div class="service-price">$150 <small>/ course</small></div>
+        </div>
+      </div>
+
+      <!-- Essay & Application Review -->
+      <div class="service-category">
+        <h3 class="category-header">Essay &amp; Application Review</h3>
+
+        <div class="service-row">
+          <div class="service-row-left">
+            <div class="service-name">Essay &amp; Application Editing</div>
+            <div class="service-desc">Draft-by-draft feedback on the written parts of your application.</div>
+            <ul class="service-includes">
+              <li>Personal statement editing and coaching</li>
+              <li>Supplemental essay review (Common App and UC PIQs)</li>
+              <li>Activities list rewriting and framing</li>
+            </ul>
+          </div>
+          <div class="service-price">$90 <small>/ essay</small></div>
+        </div>
+      </div>
+
+      <!-- 1-on-1 Consulting -->
+      <div class="service-category">
+        <h3 class="category-header">1-on-1 Consulting</h3>
+
+        <div class="service-row">
+          <div class="service-row-left">
+            <div class="service-name">Long-Term Strategy &amp; Planning</div>
+            <div class="service-desc">Ongoing 1-on-1 strategy work over the course of high school.</div>
+            <ul class="service-includes">
+              <li>Course selection and academic planning</li>
+              <li>Summer programs, research, and competition strategy</li>
+              <li>Extracurricular direction and leadership planning</li>
+              <li>Overall application narrative and school list strategy</li>
+            </ul>
+
+            <!-- Collapsible Example -->
+            <div class="example-toggle" onclick="toggleExample()">
+              <div class="example-header">
+                <span>View Example: Engineering Student Summer Plan</span>
+                <span class="example-arrow">▼</span>
+              </div>
+              <div class="example-content">
+                <div class="example-inner">
+
+                  <div class="example-section">
+                    <h4>Rising sophomore (after 9th grade)</h4>
+                    <table class="example-table">
+                      <tr>
+                        <td>Goal</td>
+                        <td>Build foundation in engineering + start competition track</td>
+                      </tr>
+                      <tr>
+                        <td>Program Options</td>
+                        <td>
+                          <strong>Reach:</strong> CMU SAMS (free, for underrepresented students)<br>
+                          <strong>Target:</strong> SSP (~$7,500 with financial aid available)<br>
+                          <strong>Safety:</strong> Local university engineering camps
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Competitions</td>
+                        <td>Science Fair (local to state), FIRST Robotics, Congressional App Challenge, AMC 10</td>
+                      </tr>
+                      <tr>
+                        <td>Projects</td>
+                        <td>Arduino/Raspberry Pi project, personal coding on GitHub, online courses (MIT OpenCourseWare)</td>
+                      </tr>
+                      <tr>
+                        <td>Timeline</td>
+                        <td>
+                          <strong>Sept-Dec:</strong> Join robotics, start projects, take online course<br>
+                          <strong>Jan-Mar:</strong> Apply to summer programs, science fair, take AMC 10<br>
+                          <strong>June-Aug:</strong> Attend program OR intensive project work
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div class="example-section">
+                    <h4>Rising junior (after 10th grade): critical summer</h4>
+                    <table class="example-table">
+                      <tr>
+                        <td>Goal</td>
+                        <td>Most important summer for admissions. Aim for selective program OR deep independent work.</td>
+                      </tr>
+                      <tr>
+                        <td>Top Programs</td>
+                        <td>
+                          <strong>Reach:</strong> RSI (~3% acceptance, Dec 10 deadline), MITES (~2%, Feb 1 deadline)<br>
+                          <strong>Target:</strong> Clark Scholars (FREE + stipend), Simons (FREE + stipend), BU RISE ($6,500)<br>
+                          <strong>Safety:</strong> Email professors at state universities for research opportunities
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>If Accepted to Program</td>
+                        <td>Go beyond requirements, build mentor relationships for strong rec letters, continue research for ISEF/Regeneron STS senior year</td>
+                      </tr>
+                      <tr>
+                        <td>If Not Accepted</td>
+                        <td>
+                          <strong>Option A:</strong> Email 20+ professors for independent research<br>
+                          <strong>Option B:</strong> Deep technical project (app, robot, circuit design)<br>
+                          <strong>Option C:</strong> Combination of research + personal project
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Competitions</td>
+                        <td>USACO (advance Bronze to Silver to Gold), Science Olympiad, FIRST Robotics (leadership role), Science Fair to ISEF, AMC 12 to AIME</td>
+                      </tr>
+                      <tr>
+                        <td>Key Deadlines</td>
+                        <td>
+                          <strong>Nov 6:</strong> Regeneron STS (if research ready)<br>
+                          <strong>Dec 10:</strong> RSI application<br>
+                          <strong>Feb 1:</strong> MITES application<br>
+                          <strong>Jan-May:</strong> Science fairs, ISEF qualification
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <div class="example-section">
+                    <h4>Rising senior (after 11th grade)</h4>
+                    <table class="example-table">
+                      <tr>
+                        <td>Goal</td>
+                        <td>Balance summer experience with college application prep. Less pressure than junior summer.</td>
+                      </tr>
+                      <tr>
+                        <td>Options</td>
+                        <td>
+                          Continue research from junior summer<br>
+                          Paid engineering internship<br>
+                          Regular job while working on applications
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Primary Focus</td>
+                        <td>
+                          <strong>June-July:</strong> Draft Common App essays, finalize activities list<br>
+                          <strong>August:</strong> Finish essays, prep for interviews, confirm rec letters
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>Final Competitions</td>
+                        <td>
+                          <strong>Regeneron STS:</strong> Nov 6 deadline, results in Jan (update colleges)<br>
+                          <strong>ISEF:</strong> Jan-March local fair to qualify<br>
+                          <strong>USACO:</strong> Push to Platinum if at Gold level
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+
+                  <p class="example-note"><strong>Note:</strong> This is a sample plan for an engineering-focused student. Your personalized summer strategy will be tailored to your specific interests, background, and goals.</p>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="service-price">$75 <small>/ session</small></div>
+        </div>
+      </div>
+
+    </div>
+    <p class="payment-note">Payment via PayPal, Venmo, or Zelle.</p>
+  </div>
+</section>
+
+<hr class="rule" />
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">Contact</h2>
+      <p class="contact-detail">Interested in a session or free 20-minute intro call? Fill out the form below and we'll get back to you within 24 hours.</p>
+      <br/>
+      <form class="contact-form" onsubmit="handleSubmit(event)">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required />
+        </div>
+        <div class="form-group">
+          <label for="grade">Grade</label>
+          <select id="grade" name="grade">
+            <option value="">Select your grade</option>
+            <option>8th grade</option>
+            <option>9th grade</option>
+            <option>10th grade</option>
+            <option>11th grade</option>
+            <option>12th grade</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="Tell us a bit about yourself and what you're looking for..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send Message</button>
+        <p class="form-success" id="form-success">Thanks! We'll be in touch soon.</p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2026 EzAdmissions · Wallace Arney · Alex Zhu · <a href="mailto:wallacearney@icloud.com">wallacearney@icloud.com</a></p>
+  <p style="margin-top: 0.6rem; font-size: 0.8rem; color: rgba(255,255,255,0.25);">Head-Royce School Class of 2026. Peer advising for informational purposes.</p>
+</footer>
+
+<script>
+function toggleExample() {
+  const toggle = document.querySelector('.example-toggle');
+  toggle.classList.toggle('active');
+}
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const name = document.getElementById('name').value;
+  const email = document.getElementById('email').value;
+  const grade = document.getElementById('grade').value;
+  const message = document.getElementById('message').value;
+  // Route your form submission here
+  console.log({ name, email, grade, message });
+  document.getElementById('form-success').style.display = 'block';
+  e.target.reset();
+}
+</script>
+
+</body>
+</html>
