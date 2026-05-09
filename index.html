@@ -506,10 +506,7 @@
       margin-top: 0.5rem;
     }
 
-    @media (max-width: 768px) {
-      .service-row { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
-      .nav-links { display: none; }
-    }
+
 
     /* ── COURSE PREVIEW SECTION ── */
     #course-preview {
@@ -701,12 +698,7 @@
       margin-top: 0.2rem;
     }
 
-    @media (max-width: 768px) {
-      .preview-content { padding: 1.5rem 1.1rem; font-size: 0.97rem; }
-      .preview-tabs { overflow-x: auto; }
-      .preview-tab { white-space: nowrap; font-size: 0.88rem; padding: 0.6rem 1rem; }
-      .preview-content .essay-grid { grid-template-columns: 1fr; }
-    }
+
 
 
     /* ── SERVICES LAYOUT WITH SIDE NAV ── */
@@ -826,13 +818,7 @@
       font-weight: 400;
     }
 
-    @media (max-width: 900px) {
-      .services-sidenav { display: none; }
-      .services-outer { display: block; }
-    }
-    @media (max-width: 768px) {
-      .course-modules-grid { grid-template-columns: 1fr 1fr; }
-    }
+
 
 
     .badge-emory    { background: #012169; color: #C9A84C; }
@@ -977,16 +963,7 @@
     }
     .preview-gate-cta p { color: var(--gray); font-size: 0.9rem; margin-bottom: 0.85rem; }
 
-    @media (max-width: 900px) {
-      .services-sidenav { display: none; }
-      .services-outer { display: block; }
-    }
-    @media (max-width: 768px) {
-      .course-modules-grid { grid-template-columns: repeat(2, 1fr); }
-      .preview-tabs-inline { overflow-x: auto; }
-      .preview-tab-inline { white-space: nowrap; font-size: 0.82rem; padding: 0.55rem 1rem; }
-      .preview-content { padding: 1.25rem 1.1rem 0.85rem; font-size: 0.95rem; }
-    }
+
 
 
     .modules-dropdown { margin: 1rem 0 1.25rem; }
@@ -1010,6 +987,127 @@
     }
     .modules-dropdown-content.open { max-height: 600px; }
     .modules-dropdown-content .course-modules-grid { margin: 0; padding: 0.85rem; }
+
+
+    /* ══════════════════════════════════════════════
+       RESPONSIVE — tablet + mobile
+    ══════════════════════════════════════════════ */
+
+    /* Tablet: hide sidenav, stack services */
+    @media (max-width: 900px) {
+      .services-sidenav { display: none; }
+      .services-outer   { display: block; }
+    }
+
+    @media (max-width: 768px) {
+
+      /* ── Base ── */
+      body { font-size: 1rem; }
+      section { padding: 2.5rem 1.1rem; }
+      .container { padding: 0; }
+
+      /* ── Nav ── */
+      nav { padding: 0 1.1rem; }
+      .nav-links { display: none; }
+      .nav-logo { font-size: 1.1rem; }
+
+      /* ── Hero ── */
+      .hero { padding: 5.5rem 1.1rem 3rem; min-height: auto; }
+      .hero h1 { font-size: 2rem; margin-bottom: 1.5rem; }
+      .from-student { font-size: 1rem; }
+      .schools-row {
+        gap: 0.6rem;
+        justify-content: center;
+      }
+      .school-badge {
+        font-size: 0.82rem;
+        padding: 0.45rem 0.7rem;
+        min-height: 48px;
+        gap: 0.4rem;
+      }
+      .school-badge img { width: 26px; height: 26px; }
+
+      /* ── Section headings ── */
+      .section-title { font-size: 1.65rem; }
+
+      /* ── Bio ── */
+      .bio-grid { gap: 2rem; }
+      .bio-photo { width: 150px; height: 150px; }
+      .bio-name { font-size: 1.1rem; }
+      .bio-text { font-size: 0.97rem; }
+
+      /* ── Services ── */
+      #services { padding: 2.5rem 1.1rem; }
+      .service-row { flex-direction: column; gap: 0.4rem; align-items: flex-start; }
+      .service-price { font-size: 1.15rem; }
+      .service-name  { font-size: 1.15rem; }
+      .service-desc  { font-size: 0.97rem; }
+      .service-includes { font-size: 0.92rem; }
+      .category-header { font-size: 1.25rem; }
+
+      /* ── Module dropdown grid ── */
+      .course-modules-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* ── Embedded preview ── */
+      .course-preview-embed { border-radius: 7px; }
+      .preview-tabs-inline { overflow-x: auto; flex-wrap: nowrap; }
+      .preview-tab-inline {
+        white-space: nowrap;
+        font-size: 0.8rem;
+        padding: 0.55rem 0.9rem;
+      }
+      .preview-content {
+        padding: 1.1rem 1rem 0.75rem;
+        font-size: 0.95rem;
+        line-height: 1.8;
+      }
+      .preview-content h3 { font-size: 1rem; }
+      .preview-content p,
+      .preview-content li { font-size: 0.95rem; }
+
+      /* Two-col essay side-by-side → stack */
+      .preview-content [style*="grid-template-columns:1fr 1fr"],
+      .preview-content [style*="grid-template-columns: 1fr 1fr"] {
+        display: block !important;
+      }
+      .preview-content [style*="grid-template-columns:1fr 1fr"] > div,
+      .preview-content [style*="grid-template-columns: 1fr 1fr"] > div {
+        margin-bottom: 1rem;
+      }
+
+      /* ── Case study / script blocks ── */
+      .preview-content .case-study  { font-size: 0.92rem; padding: 0.75rem 0.9rem; }
+      .preview-content .script-block { font-size: 0.92rem; padding: 0.7rem 0.9rem; }
+
+      /* ── Infographic SVG ── */
+      .preview-content .infographic { padding: 0.6rem; }
+
+      /* ── Gate CTA ── */
+      .preview-gate-cta { padding: 1.25rem 0.85rem 1.4rem; }
+      .preview-gate-cta p { font-size: 0.85rem; }
+      .btn-primary { font-size: 0.88rem; padding: 0.75rem 1.4rem; }
+
+      /* ── Consulting collapsible table ── */
+      .example-table { font-size: 0.78rem; }
+      .example-table td { padding: 0.45rem 0.5rem; }
+      .example-section h4 { font-size: 0.85rem; }
+
+      /* ── Contact ── */
+      .contact-detail { font-size: 0.9rem; }
+
+      /* ── Footer ── */
+      footer { padding: 1.5rem 1.1rem; font-size: 0.78rem; }
+    }
+
+    /* Extra-small phones */
+    @media (max-width: 390px) {
+      .hero h1 { font-size: 1.7rem; }
+      .school-badge { font-size: 0.75rem; padding: 0.4rem 0.55rem; }
+      .school-badge img { width: 22px; height: 22px; }
+      .schools-row { gap: 0.45rem; }
+      .section-title { font-size: 1.4rem; }
+      .course-modules-grid { grid-template-columns: 1fr; }
+    }
 
   </style>
 </head>
