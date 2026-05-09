@@ -19,7 +19,7 @@
       --white:     #ffffff;
     }
 
-    html { scroll-behavior: smooth; overflow-x: hidden; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: Arial, sans-serif;
@@ -27,7 +27,6 @@
       background: var(--bg);
       line-height: 1.8;
       font-size: 1.15rem;
-      overflow-x: hidden;
     }
 
     /* NAV */
@@ -758,7 +757,7 @@
       background: rgba(115,153,198,0.08);
     }
 
-    .services-main { flex: 1; min-width: 0; max-width: 100%; width: 100%; overflow-x: hidden; }
+    .services-main { flex: 1; min-width: 0; max-width: 100%; width: 100%; }
 
     /* Course intro block */
     .course-intro-block {
@@ -831,7 +830,7 @@
     .badge-uw       { background: #4B2E83; color: #E8D000; }
 
     /* ── SERVICES LAYOUT ── */
-    #services { background: var(--bg2); padding: 4rem 2rem; overflow-x: hidden; width: 100%; box-sizing: border-box; }
+    #services { background: var(--bg2); padding: 4rem 2rem; width: 100%; box-sizing: border-box; }
     .services-outer { display: flex; gap: 0; align-items: flex-start; max-width: 1060px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
     .services-sidenav {
@@ -852,7 +851,7 @@
     .sidenav-link:hover { color: var(--dark); border-left-color: var(--accent); background: rgba(115,153,198,0.07); }
     .sidenav-link.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: rgba(115,153,198,0.09); }
 
-    .services-main { flex: 1; min-width: 0; max-width: 100%; width: 100%; overflow-x: hidden; }
+    .services-main { flex: 1; min-width: 0; max-width: 100%; width: 100%; }
 
     /* ── MODULE PILLS ── */
     .course-modules-grid {
@@ -876,6 +875,8 @@
       overflow: hidden;
       background: var(--white);
       max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
     }
     .course-preview-embed-header {
       background: var(--dark); padding: 0.75rem 1.25rem;
@@ -907,6 +908,10 @@
     .preview-content {
       padding: 1.75rem 1.75rem 1rem;
       color: var(--dark); line-height: 1.9; font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      overflow-wrap: break-word;
+      word-wrap: break-word;
     }
     .preview-content h3 {
       font-size: 1.1rem; font-weight: 700; color: var(--dark);
