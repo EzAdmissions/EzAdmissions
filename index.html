@@ -510,6 +510,507 @@
       .service-row { flex-direction: column; gap: 0.3rem; align-items: flex-start; }
       .nav-links { display: none; }
     }
+
+    /* ── COURSE PREVIEW SECTION ── */
+    #course-preview {
+      background: #f7f9fc;
+      padding: 5rem 2rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .preview-header {
+      max-width: 850px;
+      margin: 0 auto 3rem;
+    }
+
+    .preview-header .section-label { text-transform: uppercase; letter-spacing: 0.12em; }
+
+    .preview-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 2px solid var(--border);
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .preview-tab {
+      padding: 0.7rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--gray);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 3px solid transparent;
+      margin-bottom: -2px;
+      transition: all 0.18s;
+      font-family: Arial, sans-serif;
+    }
+
+    .preview-tab:hover { color: var(--dark); }
+    .preview-tab.active {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .preview-lesson {
+      display: none;
+      max-width: 850px;
+      margin: 0 auto;
+    }
+    .preview-lesson.active { display: block; }
+
+    /* Lesson content styling - matches the course app */
+    .preview-content {
+      background: #ffffff;
+      border: 1px solid #dde2ea;
+      border-radius: 14px;
+      padding: 2.5rem 2.75rem;
+      color: #1a1a2e;
+      line-height: 2;
+      font-size: 1.05rem;
+    }
+
+    .preview-content h3 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: #1a1a2e;
+      margin: 2rem 0 0.8rem;
+      letter-spacing: -0.01em;
+    }
+    .preview-content h3:first-child { margin-top: 0; }
+
+    .preview-content p { margin-bottom: 1.1rem; font-size: 1.05rem; }
+
+    .preview-content ul, .preview-content ol {
+      padding-left: 1.4rem;
+      margin-bottom: 0.85rem;
+    }
+    .preview-content li { margin-bottom: 0.55rem; font-size: 1.05rem; line-height: 1.8; }
+    .preview-content strong { font-weight: 700; }
+    .preview-content a { color: var(--accent); font-weight: 600; }
+    .preview-content img { max-width: 100%; height: auto; display: block; border-radius: 8px; }
+
+    .preview-content em { font-style: italic; }
+
+    /* Case study block */
+    .preview-content .case-study {
+      background: rgba(204,190,177,0.15);
+      border: 1px solid rgba(204,190,177,0.5);
+      border-left: 3px solid #997e67;
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+      font-size: 1rem;
+      line-height: 1.85;
+    }
+    .preview-content .case-study-label {
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #664930;
+      margin-bottom: 0.6rem;
+    }
+    .preview-content .case-study p { margin-bottom: 0.5rem; }
+    .preview-content .case-study p:last-child { margin-bottom: 0; }
+
+    /* Script/quote block */
+    .preview-content .script-block {
+      background: rgba(102,73,48,0.06);
+      border-left: 3px solid #997e67;
+      border-radius: 0 8px 8px 0;
+      padding: 0.9rem 1.1rem;
+      margin: 1rem 0;
+      font-style: italic;
+      font-size: 1rem;
+      color: #4a3220;
+      line-height: 1.85;
+    }
+
+    /* Infographic SVG wrapper */
+    .preview-content .infographic {
+      background: #fdf5ee;
+      border: 1px solid #cebeb1;
+      border-radius: 10px;
+      padding: 1.25rem;
+      margin: 1.25rem 0;
+      overflow-x: auto;
+    }
+
+    /* Two-col essay grid */
+    .preview-content .essay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+
+    /* Gated blur overlay */
+    .preview-gate {
+      position: relative;
+      margin-top: 2rem;
+    }
+    .preview-gate-blur {
+      max-height: 200px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      pointer-events: none;
+      opacity: 0.55;
+    }
+    .preview-gate-cta {
+      text-align: center;
+      padding: 2rem 1rem 0.5rem;
+    }
+    .preview-gate-cta p {
+      color: var(--gray);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Numbered list style from course */
+    .preview-content ol {
+      counter-reset: list-counter;
+      list-style: none;
+      padding-left: 0;
+    }
+    .preview-content ol li {
+      counter-increment: list-counter;
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 0.7rem;
+    }
+    .preview-content ol li::before {
+      content: counter(list-counter);
+      min-width: 1.5rem;
+      height: 1.5rem;
+      background: var(--accent);
+      color: #fff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 0.2rem;
+    }
+
+    @media (max-width: 768px) {
+      .preview-content { padding: 1.5rem 1.1rem; font-size: 0.97rem; }
+      .preview-tabs { overflow-x: auto; }
+      .preview-tab { white-space: nowrap; font-size: 0.88rem; padding: 0.6rem 1rem; }
+      .preview-content .essay-grid { grid-template-columns: 1fr; }
+    }
+
+
+    /* ── SERVICES LAYOUT WITH SIDE NAV ── */
+    .services-outer {
+      display: flex;
+      gap: 0;
+      align-items: flex-start;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Sticky left nav */
+    .services-sidenav {
+      width: 190px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 80px;
+      align-self: flex-start;
+      padding-right: 2rem;
+    }
+
+    .services-sidenav-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.85rem;
+    }
+
+    .sidenav-link {
+      display: block;
+      padding: 0.45rem 0.75rem;
+      font-size: 0.88rem;
+      color: var(--gray);
+      text-decoration: none;
+      border-left: 2px solid var(--border);
+      margin-bottom: 0.2rem;
+      transition: all 0.15s;
+      line-height: 1.4;
+      border-radius: 0 4px 4px 0;
+    }
+    .sidenav-link:hover {
+      color: var(--dark);
+      border-left-color: var(--accent);
+      background: rgba(115,153,198,0.07);
+    }
+    .sidenav-link.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      font-weight: 600;
+      background: rgba(115,153,198,0.08);
+    }
+
+    .services-main { flex: 1; min-width: 0; }
+
+    /* Course intro block */
+    .course-intro-block {
+      background: var(--dark);
+      border-radius: 10px;
+      padding: 2rem 2.25rem;
+      margin-bottom: 2rem;
+      color: var(--white);
+    }
+    .course-intro-block h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.6rem;
+    }
+    .course-intro-block p {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.98rem;
+      line-height: 1.75;
+      margin-bottom: 1rem;
+    }
+    .course-intro-block p:last-child { margin-bottom: 0; }
+    .course-modules-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+      gap: 0.5rem;
+      margin: 1.25rem 0;
+    }
+    .course-module-pill {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 5px;
+      padding: 0.4rem 0.75rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.4;
+    }
+    .course-module-pill strong {
+      color: var(--accent-lt);
+      font-weight: 600;
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.1rem;
+    }
+    .course-intro-price {
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .course-intro-price .price-tag {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+    .course-intro-price .price-tag small {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+    }
+
+    @media (max-width: 900px) {
+      .services-sidenav { display: none; }
+      .services-outer { display: block; }
+    }
+    @media (max-width: 768px) {
+      .course-modules-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+
+    .badge-emory    { background: #012169; color: #C9A84C; }
+    .badge-ucsb     { background: #003660; color: #FEBC11; }
+    .badge-uw       { background: #4B2E83; color: #E8D000; }
+
+    /* ── SERVICES LAYOUT ── */
+    #services { background: var(--bg2); padding: 4rem 2rem; }
+    .services-outer { display: flex; gap: 0; align-items: flex-start; max-width: 1060px; margin: 0 auto; }
+
+    .services-sidenav {
+      width: 175px; flex-shrink: 0;
+      position: sticky; top: 80px; align-self: flex-start;
+      padding-right: 1.75rem;
+    }
+    .services-sidenav-label {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--gray); margin-bottom: 0.8rem;
+    }
+    .sidenav-link {
+      display: block; padding: 0.4rem 0.7rem;
+      font-size: 0.85rem; color: var(--gray); text-decoration: none;
+      border-left: 2px solid var(--border); margin-bottom: 0.15rem;
+      transition: all 0.15s; line-height: 1.4; border-radius: 0 3px 3px 0;
+    }
+    .sidenav-link:hover { color: var(--dark); border-left-color: var(--accent); background: rgba(115,153,198,0.07); }
+    .sidenav-link.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; background: rgba(115,153,198,0.09); }
+
+    .services-main { flex: 1; min-width: 0; }
+
+    /* ── MODULE PILLS ── */
+    .course-modules-grid {
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 0.4rem; margin: 1rem 0 1.25rem;
+    }
+    .course-module-pill {
+      background: var(--bg); border: 1px solid var(--border); border-radius: 4px;
+      padding: 0.35rem 0.65rem; font-size: 0.78rem; color: var(--mid); line-height: 1.35;
+    }
+    .course-module-pill strong {
+      color: var(--accent); font-weight: 700; display: block;
+      font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.1rem;
+    }
+
+    /* ── EMBEDDED PREVIEW ── */
+    .course-preview-embed {
+      margin-top: 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .course-preview-embed-header {
+      background: var(--dark); padding: 0.75rem 1.25rem;
+      display: flex; align-items: center; gap: 0.85rem;
+    }
+    .preview-badge {
+      background: var(--accent); color: #fff;
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 3px;
+    }
+    .preview-sub { color: rgba(255,255,255,0.65); font-size: 0.85rem; }
+
+    .preview-tabs-inline {
+      display: flex; gap: 0; border-bottom: 1px solid var(--border);
+      background: #f8f9fb;
+    }
+    .preview-tab-inline {
+      padding: 0.65rem 1.25rem; font-size: 0.88rem; font-weight: 600;
+      color: var(--gray); cursor: pointer; border: none; background: none;
+      border-bottom: 2px solid transparent; margin-bottom: -1px;
+      transition: all 0.15s; font-family: Arial, sans-serif;
+    }
+    .preview-tab-inline:hover { color: var(--dark); }
+    .preview-tab-inline.active { color: var(--accent); border-bottom-color: var(--accent); background: var(--white); }
+
+    .preview-lesson { display: none; }
+    .preview-lesson.active { display: block; }
+
+    .preview-content {
+      padding: 1.75rem 1.75rem 1rem;
+      color: var(--dark); line-height: 1.9; font-size: 1rem;
+    }
+    .preview-content h3 {
+      font-size: 1.1rem; font-weight: 700; color: var(--dark);
+      margin: 1.75rem 0 0.65rem; letter-spacing: -0.01em;
+    }
+    .preview-content h3:first-child { margin-top: 0; }
+    .preview-content p { margin-bottom: 1rem; font-size: 1rem; }
+    .preview-content ul, .preview-content ol { padding-left: 1.3rem; margin-bottom: 0.75rem; }
+    .preview-content li { margin-bottom: 0.5rem; font-size: 1rem; line-height: 1.75; }
+    .preview-content strong { font-weight: 700; }
+    .preview-content em { font-style: italic; }
+    .preview-content a { color: var(--accent); font-weight: 600; }
+    .preview-content img { max-width: 100%; height: auto; border-radius: 6px; }
+
+    .preview-content .case-study {
+      background: rgba(204,190,177,0.15); border: 1px solid rgba(204,190,177,0.5);
+      border-left: 3px solid #997e67; border-radius: 0 6px 6px 0;
+      padding: 0.85rem 1.1rem; margin: 0.85rem 0; font-size: 0.97rem; line-height: 1.8;
+    }
+    .preview-content .case-study-label {
+      font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.08em; color: #664930; margin-bottom: 0.5rem;
+    }
+    .preview-content .case-study p { margin-bottom: 0.4rem; }
+    .preview-content .case-study p:last-child { margin-bottom: 0; }
+
+    .preview-content .script-block {
+      background: rgba(102,73,48,0.06); border-left: 3px solid #997e67;
+      border-radius: 0 6px 6px 0; padding: 0.8rem 1rem; margin: 0.85rem 0;
+      font-style: italic; font-size: 0.97rem; color: #4a3220; line-height: 1.8;
+    }
+    .preview-content .infographic {
+      background: #fdf5ee; border: 1px solid #cebeb1; border-radius: 8px;
+      padding: 1rem; margin: 1rem 0; overflow-x: auto;
+    }
+    .preview-content ol {
+      counter-reset: list-counter; list-style: none; padding-left: 0;
+    }
+    .preview-content ol li {
+      counter-increment: list-counter; display: flex;
+      gap: 0.65rem; align-items: flex-start; margin-bottom: 0.6rem;
+    }
+    .preview-content ol li::before {
+      content: counter(list-counter); min-width: 1.4rem; height: 1.4rem;
+      background: var(--accent); color: #fff; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.65rem; font-weight: 700; flex-shrink: 0; margin-top: 0.2rem;
+    }
+
+    .preview-gate { position: relative; }
+    .preview-gate-blur {
+      max-height: 180px; overflow: hidden;
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+      pointer-events: none; opacity: 0.5;
+    }
+    .preview-gate-cta {
+      text-align: center; padding: 1.5rem 1rem 1.75rem;
+      border-top: 1px solid var(--border); background: #f8f9fb;
+    }
+    .preview-gate-cta p { color: var(--gray); font-size: 0.9rem; margin-bottom: 0.85rem; }
+
+    @media (max-width: 900px) {
+      .services-sidenav { display: none; }
+      .services-outer { display: block; }
+    }
+    @media (max-width: 768px) {
+      .course-modules-grid { grid-template-columns: repeat(2, 1fr); }
+      .preview-tabs-inline { overflow-x: auto; }
+      .preview-tab-inline { white-space: nowrap; font-size: 0.82rem; padding: 0.55rem 1rem; }
+      .preview-content { padding: 1.25rem 1.1rem 0.85rem; font-size: 0.95rem; }
+    }
+
+
+    .modules-dropdown { margin: 1rem 0 1.25rem; }
+    .modules-dropdown-btn {
+      display: flex; align-items: center; gap: 0.5rem;
+      background: none; border: 1px solid var(--border);
+      border-radius: 5px; padding: 0.5rem 1rem;
+      font-size: 0.88rem; font-weight: 600; color: var(--accent);
+      cursor: pointer; font-family: Arial, sans-serif;
+      transition: all 0.15s;
+    }
+    .modules-dropdown-btn:hover { background: rgba(115,153,198,0.07); border-color: var(--accent); }
+    .modules-dropdown-btn.open { border-bottom-left-radius: 0; border-bottom-right-radius: 0; border-bottom-color: transparent; }
+    .modules-dropdown-arrow { font-size: 0.65rem; transition: transform 0.2s; }
+    .modules-dropdown-btn.open .modules-dropdown-arrow { transform: rotate(180deg); }
+    .modules-dropdown-content {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.3s ease;
+      border: 1px solid var(--border); border-top: none;
+      border-radius: 0 0 5px 5px;
+    }
+    .modules-dropdown-content.open { max-height: 600px; }
+    .modules-dropdown-content .course-modules-grid { margin: 0; padding: 0.85rem; }
+
   </style>
 </head>
 <body>
@@ -548,6 +1049,18 @@
       <div class="school-badge badge-columbia">
         <img src="columbia.png" alt="Columbia">
         Columbia
+      </div>
+      <div class="school-badge badge-emory">
+        <img src="Emory_University_Seal.png" alt="Emory">
+        Emory
+      </div>
+      <div class="school-badge badge-ucsb">
+        <img src="UC_Santa_Barbara_Gauchos_logo.png" alt="UCSB">
+        UC Santa Barbara
+      </div>
+      <div class="school-badge badge-uw">
+        <img src="Washington_Huskies_logo.png" alt="UW">
+        UW CS
       </div>
     </div>
   </div>
@@ -592,42 +1105,226 @@
     </div>
   </div>
 </section>
+<hr class="rule" />
 
 <hr class="rule" />
 
 <!-- SERVICES -->
 <section id="services">
-  <div class="container">
-    <div style="display:flex; align-items:center; gap:0.8rem; margin-bottom:1.2rem;">
-      <img src="ez-logo.png" width="36" height="36" style="border-radius:4px;" alt="Ez Logo">
-      <h2 class="section-title" style="margin-bottom:0;">Services</h2>
-    </div>
-    <div class="services-list">
+  <div class="services-outer">
 
-      <!-- Entry Course -->
-      <div class="service-category">
+    <!-- Sticky left sidenav -->
+    <aside class="services-sidenav">
+      <div class="services-sidenav-label">On this page</div>
+      <a href="#svc-course" class="sidenav-link">Entry Course</a>
+      <a href="#svc-essay" class="sidenav-link">Essay &amp; App Review</a>
+      <a href="#svc-consulting" class="sidenav-link">1-on-1 Consulting</a>
+    </aside>
+
+    <!-- Main content -->
+    <div class="services-main">
+      <div style="display:flex;align-items:center;gap:0.8rem;margin-bottom:2rem;">
+        <img src="ez-logo.png" width="36" height="36" style="border-radius:4px;" alt="Ez Logo">
+        <h2 class="section-title" style="margin-bottom:0;">Services</h2>
+      </div>
+
+      <!-- ── ENTRY COURSE ── -->
+      <div id="svc-course" class="service-category">
         <h3 class="category-header">Entry Course</h3>
-
         <div class="service-row">
           <div class="service-row-left">
             <div class="service-name">College Admissions Crash Course</div>
-            <div class="service-desc">A complete overview of the college admissions process: everything you need to know before you start applying. Designed for students and families just getting started.</div>
+            <div class="service-desc">A complete, self-paced course covering everything you need to know before you start applying. 18 modules and 24 lessons built by students who just went through the process at a competitive Bay Area private school.</div>
             <ul class="service-includes">
               <li>How the admissions process actually works, start to finish</li>
-              <li>How to write strong essays: personal statement, supplementals, and UC PIQs</li>
-              <li>Walkthrough of the Common App and the UC application</li>
-              <li>How to use Scoir and other planning tools effectively</li>
-              <li>Building a balanced college list and managing deadlines</li>
+              <li>Four-year timeline: what to do freshman through senior year</li>
+              <li>GPA, course rigor, SAT/ACT strategy, and testing timelines</li>
+              <li>Building a real extracurricular spike, not a scattered list</li>
+              <li>Awards, competitions, and summer program database (searchable)</li>
+              <li>Essays: personal statement, supplementals, and UC PIQs</li>
+              <li>Full Common App and UC application walkthrough</li>
+              <li>College list building with a searchable school database</li>
+              <li>Recommendation letters, parent communication, and staying organized</li>
             </ul>
+
+            <!-- Module dropdown -->
+            <div class="modules-dropdown">
+              <button class="modules-dropdown-btn" onclick="toggleModules(this)">
+                View all 18 modules
+                <span class="modules-dropdown-arrow">&#9660;</span>
+              </button>
+              <div class="modules-dropdown-content">
+                <div class="course-modules-grid">
+                  <div class="course-module-pill"><strong>M1</strong>How Admissions Works</div>
+                  <div class="course-module-pill"><strong>M2</strong>Four-Year Timeline</div>
+                  <div class="course-module-pill"><strong>M3</strong>School Context</div>
+                  <div class="course-module-pill"><strong>M4</strong>GPA &amp; Course Rigor</div>
+                  <div class="course-module-pill"><strong>M5</strong>SAT, ACT &amp; Testing</div>
+                  <div class="course-module-pill"><strong>M6</strong>Extracurriculars</div>
+                  <div class="course-module-pill"><strong>M7</strong>Awards &amp; Competitions</div>
+                  <div class="course-module-pill"><strong>M8</strong>Summer Planning</div>
+                  <div class="course-module-pill"><strong>M9</strong>Service &amp; Leadership</div>
+                  <div class="course-module-pill"><strong>M10</strong>Application Story</div>
+                  <div class="course-module-pill"><strong>M11</strong>College List Building</div>
+                  <div class="course-module-pill"><strong>M12</strong>Common App</div>
+                  <div class="course-module-pill"><strong>M13</strong>UC Application</div>
+                  <div class="course-module-pill"><strong>M14</strong>Essays</div>
+                  <div class="course-module-pill"><strong>M15</strong>Rec Letters</div>
+                  <div class="course-module-pill"><strong>M16</strong>Parent Communication</div>
+                  <div class="course-module-pill"><strong>M17</strong>Organization System</div>
+                  <div class="course-module-pill"><strong>M18</strong>Conclusion</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Embedded preview -->
+            <div class="course-preview-embed">
+              <div class="course-preview-embed-header">
+                <span class="preview-badge">Free Preview</span>
+                <span class="preview-sub">Two full lessons, no sign-up needed</span>
+              </div>
+
+              <div class="preview-tabs-inline">
+                <button class="preview-tab-inline active" onclick="showLesson(0)">How College Admissions Works</button>
+                <button class="preview-tab-inline" onclick="showLesson(1)">UC Personal Insight Questions</button>
+              </div>
+
+              <!-- Lesson 1 -->
+              <div class="preview-lesson active" id="preview-0">
+                <div class="preview-content">
+                  <h3>The Core Idea</h3>
+        <p>College admissions is not a binary scoreboard. Yes, you could plot GPA, APs, and SAT scores against acceptance rates and get a decent R² coefficient, but that misses the point entirely. Colleges look at course difficulty, test scores, activities, essays, recommendations, and the context of your school. What they really want to know: did you challenge yourself, make an impact, and does your application tell a clear story?</p>
+        <p>The mistake most students make is doing random impressive things without a plan. They join twelve clubs, take classes they hate, copy whatever their overachieving classmate is doing, and then senior year their application reads like a list of unrelated facts. The holy grail is a <strong>spike</strong>: a coherent throughline that makes you instantly memorable.</p>
+        <div class="case-study">
+          <div class="case-study-label">Case Study: The Scattered vs. The Spiked</div>
+          <p><strong>Maya</strong> had a 4.1 GPA, 1480 SAT, and eight clubs. When her admissions officer tried to describe her to colleagues, they said: "She's well-rounded." That's the kiss of death. Well-rounded means forgettable.</p>
+          <p><strong>Jordan</strong> had a 3.9 GPA and 1460 SAT. Sophomore year he became obsessed with food insecurity, started a student-run food pantry serving 200 families monthly, interned at a local nonprofit, and won a regional service award. Every admissions officer remembered "the food pantry kid." He got into schools Maya didn't.</p>
+        </div>
+        <div class="infographic">
+          <svg viewBox="0 0 660 200" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;">
+            <!-- SCATTERED side -->
+            <text x="165" y="20" text-anchor="middle" fill="#997e67" font-family="Arial" font-size="11" font-weight="700" letter-spacing="2">SCATTERED</text>
+            <rect x="20" y="30" width="290" height="30" rx="6" fill="rgba(220,38,38,0.07)" stroke="rgba(220,38,38,0.22)" stroke-width="1"/>
+            <text x="165" y="50" text-anchor="middle" fill="#b91c1c" font-family="Arial" font-size="10.5">Key Club · Model UN · Tennis · Cooking Club</text>
+            <rect x="20" y="66" width="290" height="30" rx="6" fill="rgba(220,38,38,0.07)" stroke="rgba(220,38,38,0.22)" stroke-width="1"/>
+            <text x="165" y="86" text-anchor="middle" fill="#b91c1c" font-family="Arial" font-size="10.5">Math Team · Environmental Club · Debate</text>
+            <rect x="20" y="102" width="290" height="30" rx="6" fill="rgba(220,38,38,0.07)" stroke="rgba(220,38,38,0.22)" stroke-width="1"/>
+            <text x="165" y="122" text-anchor="middle" fill="#b91c1c" font-family="Arial" font-size="10.5">Hospital volunteer (×2) · Summer program</text>
+            <text x="165" y="152" text-anchor="middle" fill="#997e67" font-family="Arial" font-size="11">AO describes her as:</text>
+            <text x="165" y="174" text-anchor="middle" fill="#b91c1c" font-family="Arial" font-size="13" font-weight="700">"Well-rounded." </text>
+            <!-- divider -->
+            <line x1="330" y1="12" x2="330" y2="188" stroke="rgba(107,114,128,0.2)" stroke-width="1" stroke-dasharray="4,3"/>
+            <!-- SPIKED side -->
+            <text x="495" y="20" text-anchor="middle" fill="#997e67" font-family="Arial" font-size="11" font-weight="700" letter-spacing="2">SPIKED</text>
+            <rect x="345" y="30" width="295" height="30" rx="6" fill="rgba(5,150,105,0.08)" stroke="rgba(5,150,105,0.25)" stroke-width="1"/>
+            <text x="492" y="50" text-anchor="middle" fill="#065f46" font-family="Arial" font-size="10.5">Student food pantry → 200 families/month</text>
+            <rect x="345" y="66" width="295" height="30" rx="6" fill="rgba(5,150,105,0.08)" stroke="rgba(5,150,105,0.25)" stroke-width="1"/>
+            <text x="492" y="86" text-anchor="middle" fill="#065f46" font-family="Arial" font-size="10.5">Food policy writing · Nonprofit internship</text>
+            <rect x="345" y="102" width="295" height="30" rx="6" fill="rgba(5,150,105,0.08)" stroke="rgba(5,150,105,0.25)" stroke-width="1"/>
+            <text x="492" y="122" text-anchor="middle" fill="#065f46" font-family="Arial" font-size="10.5">Regional youth service award</text>
+            <text x="492" y="152" text-anchor="middle" fill="#997e67" font-family="Arial" font-size="11">AO describes him as:</text>
+            <text x="492" y="174" text-anchor="middle" fill="#065f46" font-family="Arial" font-size="13" font-weight="700">"The food pantry kid." </text>
+          </svg>
+        </div>
+        <p>In this course, we will show you how to build that kind of profile deliberately, so that by senior year your application tells one clear, compelling story.</p>
+                </div>
+                <div class="preview-gate">
+                  <div class="preview-gate-blur">
+                    <div class="preview-content" style="margin-top:0.5rem;">
+                      <h3>What comes next</h3>
+                      <p>Module 2 walks through exactly what to do each year of high school so you are never behind. From there: GPA strategy, SAT vs. ACT, building your spike, awards, summer planning, essays, the Common App, the UC application, and how to stay organized through it all.</p>
+                    </div>
+                  </div>
+                  <div class="preview-gate-cta">
+                    <p>18 modules. 24 lessons. Everything you need to know before you apply.</p>
+                    <a href="mailto:EzAdmissionscounseling@gmail.com" class="btn-primary">Get Full Access: $150</a>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Lesson 2 -->
+              <div class="preview-lesson" id="preview-1">
+                <div class="preview-content">
+                  <h3>The Eight PIQ Prompts</h3>
+          <p>You choose four of these eight to answer, each in 350 words:</p>
+          <ul>
+            <li>Describe an example of your leadership experience</li>
+            <li>Every person has a creative side: how do you express yours?</li>
+            <li>What would you say is your greatest talent or skill?</li>
+            <li>Describe how you have taken advantage of a significant educational opportunity</li>
+            <li>Describe the most significant challenge you have faced</li>
+            <li>Think about an academic subject that inspires you</li>
+            <li>What have you done to make your school or community a better place?</li>
+            <li>Beyond what is already elsewhere in your application, what do you want UC to know about you?</li>
+          </ul>
+          <h3>Strategy for Choosing Your Four</h3>
+          <p>Pick prompts that let you talk about different parts of your life: do not write four essays about the same activity or theme. Aim to cover: an academic strength, a personal challenge or background, a meaningful activity or leadership role, and something that reveals character or values.</p>
+
+          <h3>Show vs. Tell: A Side-by-Side Comparison</h3>
+          <p>Here are two versions of the same UC Personal Insight essay response. Both are about the same topic and experience. One was admitted. One was not. The difference is not topic or length; it is specificity and voice.</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0;min-width:0;">
+            <div style="min-width:0;overflow:hidden;">
+              <div style="background:rgba(5,150,105,0.08);border:1px solid rgba(5,150,105,0.28);border-radius:8px;padding:0.75rem 1rem;margin-bottom:0.5rem;">
+                <h4 style="color:#059669;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Strong Version: Shows, Does Not Tell</h4>
+              </div>
+              <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+                <img src="good-uc-essay.png" alt="Good Essay" style="width:100%;display:block;height:auto;">
+              </div>
+              <div style="margin-top:0.75rem;display:flex;flex-direction:column;gap:0.4rem;">
+                <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.75rem;background:#fff0f0;border:1.5px solid #dc2626;border-radius:5px;">
+                  <span style="background:#dc2626;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;white-space:nowrap;">PROBLEM</span>
+                  <span style="font-size:0.82rem;color:#555;">Paragraph 1</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.75rem;background:#fff0f0;border:1.5px solid #dc2626;border-radius:5px;">
+                  <span style="background:#dc2626;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;white-space:nowrap;">SOLUTION / WHAT I DID</span>
+                  <span style="font-size:0.82rem;color:#555;">Paragraphs 2 &amp; 3</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.75rem;background:#fff0f0;border:1.5px solid #dc2626;border-radius:5px;">
+                  <span style="background:#dc2626;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;white-space:nowrap;">IMPACT</span>
+                  <span style="font-size:0.82rem;color:#555;">Paragraph 4</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.6rem;padding:0.45rem 0.75rem;background:#fff0f0;border:1.5px solid #dc2626;border-radius:5px;">
+                  <span style="background:#dc2626;color:#fff;font-size:0.6rem;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:0.05em;white-space:nowrap;">WHAT I LEARNED</span>
+                  <span style="font-size:0.82rem;color:#555;">Paragraph 5</span>
+                </div>
+              </div>
+            </div>
+            <div style="min-width:0;overflow:hidden;">
+              <div style="background:rgba(220,38,38,0.06);border:1px solid rgba(220,38,38,0.22);border-radius:8px;padding:0.75rem 1rem;margin-bottom:0.5rem;">
+                <h4 style="color:#dc2626;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;margin-bottom:0.5rem;">Weak Version: Tells, Does Not Show</h4>
+              </div>
+              <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);">
+                <img src="bad-uc-essay.png" alt="Bad Essay" style="width:100%;display:block;height:auto;">
+              </div>
+            </div>
+          </div>
+          <p><strong>What makes the difference:</strong> The strong version opens with a concrete scene ("As a volunteer coach for Head-Royce Middle School Debate, I shared my passion...") and includes specific evidence: YouTube lectures, Discord mentorship, files used at national tournaments, and named outcomes. The weak version says "I shared my passion" and "debate is beneficial" without ever proving it. Admissions officers read the weak version and think: <em>okay, but how?</em> The strong version answers that question before they can ask it.</p>
+          <div class="script-block">350 words is short. Every sentence needs to do work. Start with a specific moment, connect it to a larger point, and do not summarize your resume. The UC is trying to understand who you are, not just what you have done.</div>
+                </div>
+                <div class="preview-gate">
+                  <div class="preview-gate-blur">
+                    <div class="preview-content" style="margin-top:0.5rem;">
+                      <h3>What comes next</h3>
+                      <p>The course also covers the full Common App walkthrough, supplemental "Why Us" essays with real examples side by side, personal statement strategy, and a complete essay tracker spreadsheet you can copy and use immediately.</p>
+                    </div>
+                  </div>
+                  <div class="preview-gate-cta">
+                    <p>18 modules. 24 lessons. Everything you need to know before you apply.</p>
+                    <a href="mailto:EzAdmissionscounseling@gmail.com" class="btn-primary">Get Full Access: $150</a>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- end course-preview-embed -->
+
           </div>
           <div class="service-price">$150 <small>/ course</small></div>
         </div>
       </div>
 
-      <!-- Essay & Application Review -->
-      <div class="service-category">
+      <!-- ── ESSAY & APP REVIEW ── -->
+      <div id="svc-essay" class="service-category">
         <h3 class="category-header">Essay &amp; Application Review</h3>
-
         <div class="service-row">
           <div class="service-row-left">
             <div class="service-name">Essay &amp; Application Editing</div>
@@ -642,10 +1339,9 @@
         </div>
       </div>
 
-      <!-- 1-on-1 Consulting -->
-      <div class="service-category">
+      <!-- ── 1-ON-1 CONSULTING ── -->
+      <div id="svc-consulting" class="service-category">
         <h3 class="category-header">1-on-1 Consulting</h3>
-
         <div class="service-row">
           <div class="service-row-left">
             <div class="service-name">Long-Term Strategy &amp; Planning</div>
@@ -661,121 +1357,40 @@
             <div class="example-toggle" onclick="toggleExample()">
               <div class="example-header">
                 <span>View Example: Engineering Student Summer Plan</span>
-                <span class="example-arrow">▼</span>
+                <span class="example-arrow">&#9660;</span>
               </div>
               <div class="example-content">
                 <div class="example-inner">
-
                   <div class="example-section">
                     <h4>Rising sophomore (after 9th grade)</h4>
                     <table class="example-table">
-                      <tr>
-                        <td>Goal</td>
-                        <td>Build foundation in engineering + start competition track</td>
-                      </tr>
-                      <tr>
-                        <td>Program Options</td>
-                        <td>
-                          <strong>Reach:</strong> CMU SAMS (free, for underrepresented students)<br>
-                          <strong>Target:</strong> SSP (~$7,500 with financial aid available)<br>
-                          <strong>Safety:</strong> Local university engineering camps
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Competitions</td>
-                        <td>Science Fair (local to state), FIRST Robotics, Congressional App Challenge, AMC 10</td>
-                      </tr>
-                      <tr>
-                        <td>Projects</td>
-                        <td>Arduino/Raspberry Pi project, personal coding on GitHub, online courses (MIT OpenCourseWare)</td>
-                      </tr>
-                      <tr>
-                        <td>Timeline</td>
-                        <td>
-                          <strong>Sept-Dec:</strong> Join robotics, start projects, take online course<br>
-                          <strong>Jan-Mar:</strong> Apply to summer programs, science fair, take AMC 10<br>
-                          <strong>June-Aug:</strong> Attend program OR intensive project work
-                        </td>
-                      </tr>
+                      <tr><td>Goal</td><td>Build foundation in engineering + start competition track</td></tr>
+                      <tr><td>Program Options</td><td><strong>Reach:</strong> CMU SAMS (free, for underrepresented students)<br><strong>Target:</strong> SSP (~$7,500 with financial aid available)<br><strong>Safety:</strong> Local university engineering camps</td></tr>
+                      <tr><td>Competitions</td><td>Science Fair (local to state), FIRST Robotics, Congressional App Challenge, AMC 10</td></tr>
+                      <tr><td>Projects</td><td>Arduino/Raspberry Pi project, personal coding on GitHub, online courses (MIT OpenCourseWare)</td></tr>
+                      <tr><td>Timeline</td><td><strong>Sept-Dec:</strong> Join robotics, start projects, take online course<br><strong>Jan-Mar:</strong> Apply to summer programs, science fair, take AMC 10<br><strong>June-Aug:</strong> Attend program OR intensive project work</td></tr>
                     </table>
                   </div>
-
                   <div class="example-section">
                     <h4>Rising junior (after 10th grade): critical summer</h4>
                     <table class="example-table">
-                      <tr>
-                        <td>Goal</td>
-                        <td>Most important summer for admissions. Aim for selective program OR deep independent work.</td>
-                      </tr>
-                      <tr>
-                        <td>Top Programs</td>
-                        <td>
-                          <strong>Reach:</strong> RSI (~3% acceptance, Dec 10 deadline), MITES (~2%, Feb 1 deadline)<br>
-                          <strong>Target:</strong> Clark Scholars (FREE + stipend), Simons (FREE + stipend), BU RISE ($6,500)<br>
-                          <strong>Safety:</strong> Email professors at state universities for research opportunities
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>If Accepted to Program</td>
-                        <td>Go beyond requirements, build mentor relationships for strong rec letters, continue research for ISEF/Regeneron STS senior year</td>
-                      </tr>
-                      <tr>
-                        <td>If Not Accepted</td>
-                        <td>
-                          <strong>Option A:</strong> Email 20+ professors for independent research<br>
-                          <strong>Option B:</strong> Deep technical project (app, robot, circuit design)<br>
-                          <strong>Option C:</strong> Combination of research + personal project
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Competitions</td>
-                        <td>USACO (advance Bronze to Silver to Gold), Science Olympiad, FIRST Robotics (leadership role), Science Fair to ISEF, AMC 12 to AIME</td>
-                      </tr>
-                      <tr>
-                        <td>Key Deadlines</td>
-                        <td>
-                          <strong>Nov 6:</strong> Regeneron STS (if research ready)<br>
-                          <strong>Dec 10:</strong> RSI application<br>
-                          <strong>Feb 1:</strong> MITES application<br>
-                          <strong>Jan-May:</strong> Science fairs, ISEF qualification
-                        </td>
-                      </tr>
+                      <tr><td>Goal</td><td>Most important summer for admissions. Aim for selective program OR deep independent work.</td></tr>
+                      <tr><td>Top Programs</td><td><strong>Reach:</strong> RSI (~3% acceptance, Dec 10 deadline), MITES (~2%, Feb 1 deadline)<br><strong>Target:</strong> Clark Scholars (FREE + stipend), Simons (FREE + stipend), BU RISE ($6,500)<br><strong>Safety:</strong> Email professors at state universities for research opportunities</td></tr>
+                      <tr><td>If Accepted</td><td>Go beyond requirements, build mentor relationships for strong rec letters, continue research for ISEF/Regeneron STS senior year</td></tr>
+                      <tr><td>If Not Accepted</td><td><strong>Option A:</strong> Email 20+ professors for independent research<br><strong>Option B:</strong> Deep technical project (app, robot, circuit design)<br><strong>Option C:</strong> Combination of research + personal project</td></tr>
+                      <tr><td>Competitions</td><td>USACO (Bronze to Silver to Gold), Science Olympiad, FIRST Robotics (leadership role), Science Fair to ISEF, AMC 12 to AIME</td></tr>
+                      <tr><td>Key Deadlines</td><td><strong>Nov 6:</strong> Regeneron STS (if research ready)<br><strong>Dec 10:</strong> RSI application<br><strong>Feb 1:</strong> MITES application<br><strong>Jan-May:</strong> Science fairs, ISEF qualification</td></tr>
                     </table>
                   </div>
-
                   <div class="example-section">
                     <h4>Rising senior (after 11th grade)</h4>
                     <table class="example-table">
-                      <tr>
-                        <td>Goal</td>
-                        <td>Balance summer experience with college application prep. Less pressure than junior summer.</td>
-                      </tr>
-                      <tr>
-                        <td>Options</td>
-                        <td>
-                          Continue research from junior summer<br>
-                          Paid engineering internship<br>
-                          Regular job while working on applications
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Primary Focus</td>
-                        <td>
-                          <strong>June-July:</strong> Draft Common App essays, finalize activities list<br>
-                          <strong>August:</strong> Finish essays, prep for interviews, confirm rec letters
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Final Competitions</td>
-                        <td>
-                          <strong>Regeneron STS:</strong> Nov 6 deadline, results in Jan (update colleges)<br>
-                          <strong>ISEF:</strong> Jan-March local fair to qualify<br>
-                          <strong>USACO:</strong> Push to Platinum if at Gold level
-                        </td>
-                      </tr>
+                      <tr><td>Goal</td><td>Balance summer experience with college application prep. Less pressure than junior summer.</td></tr>
+                      <tr><td>Options</td><td>Continue research from junior summer<br>Paid engineering internship<br>Regular job while working on applications</td></tr>
+                      <tr><td>Primary Focus</td><td><strong>June-July:</strong> Draft Common App essays, finalize activities list<br><strong>August:</strong> Finish essays, prep for interviews, confirm rec letters</td></tr>
+                      <tr><td>Final Competitions</td><td><strong>Regeneron STS:</strong> Nov 6 deadline, results in Jan (update colleges)<br><strong>ISEF:</strong> Jan-March local fair to qualify<br><strong>USACO:</strong> Push to Platinum if at Gold level</td></tr>
                     </table>
                   </div>
-
                   <p class="example-note"><strong>Note:</strong> This is a sample plan for an engineering-focused student. Your personalized summer strategy will be tailored to your specific interests, background, and goals.</p>
                 </div>
               </div>
@@ -786,9 +1401,9 @@
         </div>
       </div>
 
-    </div>
-    <p class="payment-note">Payment via PayPal, Venmo, or Zelle.</p>
-  </div>
+      <p class="payment-note">Payment via PayPal, Venmo, or Zelle.</p>
+    </div><!-- end services-main -->
+  </div><!-- end services-outer -->
 </section>
 
 <hr class="rule" />
@@ -799,29 +1414,56 @@
     <div class="contact-inner">
       <p class="section-label">Contact</p>
       <h2 class="section-title">Book a Consultation</h2>
-      <p class="contact-detail">Interested in a session or free 20-minute intro call? Email us at <a href="mailto:EzAdmissionsCounseling@gmail.com" style="color: var(--accent); text-decoration: none; font-weight: 600;">EzAdmissionsCounseling@gmail.com</a> and we'll get back to you within 24 hours.</p>
+      <p class="contact-detail">Interested in a session or free 20-minute intro call? Email us at <a href="mailto:EzAdmissionscounseling@gmail.com" style="color:var(--accent);text-decoration:none;font-weight:600;">EzAdmissionscounseling@gmail.com</a> and we'll get back to you within 24 hours.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>&copy; 2026 EzAdmissions · Wallace Arney · Alex Zhu · <a href="mailto:EzAdmissionsCounseling@gmail.com">EzAdmissionsCounseling@gmail.com</a></p>
-  <p style="margin-top: 0.6rem; font-size: 0.8rem; color: rgba(255,255,255,0.25);">Head-Royce School Class of 2026. Peer advising for informational purposes.</p>
+  <p>&copy; 2026 EzAdmissions &middot; Wallace Arney &middot; Alex Zhu &middot; <a href="mailto:wallacearney@icloud.com">wallacearney@icloud.com</a></p>
+  <p style="margin-top:0.6rem;font-size:0.8rem;color:rgba(255,255,255,0.25);">Head-Royce School Class of 2026. Peer advising for informational purposes.</p>
 </footer>
 
 <script>
+function toggleModules(btn) {
+  btn.classList.toggle('open');
+  btn.nextElementSibling.classList.toggle('open');
+  btn.querySelector('.modules-dropdown-arrow').style.transform =
+    btn.classList.contains('open') ? 'rotate(180deg)' : '';
+}
+
+function showLesson(idx) {
+  document.querySelectorAll('.preview-lesson').forEach(function(el, i) {
+    el.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.preview-tab-inline').forEach(function(el, i) {
+    el.classList.toggle('active', i === idx);
+  });
+}
+
+// Sidenav scroll spy
+(function() {
+  var links = document.querySelectorAll('.sidenav-link');
+  var ids = ['svc-course','svc-essay','svc-consulting'];
+  function onScroll() {
+    var scrollY = window.scrollY + 140;
+    var current = ids[0];
+    ids.forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    });
+    links.forEach(function(l) {
+      l.classList.toggle('active', l.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+})();
+
 function toggleExample() {
-  const toggle = document.querySelector('.example-toggle');
+  var toggle = document.querySelector('.example-toggle');
   toggle.classList.toggle('active');
 }
-
-function handleSubmit(e) {
-  // Show success message
-  setTimeout(() => {
-    document.getElementById('form-success').style.display = 'block';
-  }, 500);
-}
 </script>
-
 </body>
 </html>
